@@ -13,6 +13,7 @@
         var pt = patient.read();
         var obv = smart.patient.api.fetchAll({
                     type: 'Observation',
+          count: 7,
                     query: {
                       code: {
                         $or: ['http://loinc.org|8302-2', 'http://loinc.org|8462-4',
@@ -28,7 +29,9 @@
         $.when(pt, obv).done(function(patient, obv) {
           var byCodes = smart.byCodes(obv, 'code');
           var gender = patient.gender;
-
+          console.log(byCodes('8302-2'));
+          console.log(byCodes('29463-7'));
+          console.log(byCodes('2085-9'));
           var fname = '';
           var lname = '';
 
@@ -82,7 +85,7 @@
       gender: {value: ''},
       birthdate: {value: ''},
       height: {value: ''},
-      weight:{value:''},
+      weight:{value: ''},
       systolicbp: {value: ''},
       diastolicbp: {value: ''},
       ldl: {value: ''},
